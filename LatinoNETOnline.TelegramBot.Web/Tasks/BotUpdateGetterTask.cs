@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,7 +8,7 @@ using RecurrentTasks;
 
 using Telegram.Bot.Framework.Abstractions;
 
-namespace LatinoNETOnline.Bot.Web.Tasks
+namespace LatinoNETOnline.TelegramBot.Web.Tasks
 {
     public class BotUpdateGetterTask<TBot> : IRunnable
         where TBot : class, IBot
@@ -23,6 +21,11 @@ namespace LatinoNETOnline.Bot.Web.Tasks
         {
             _botManager = botManager;
             _logger = logger;
+        }
+
+        public void Run(ITask currentTask, CancellationToken cancellationToken)
+        {
+            RunAsync(currentTask, null, default).Wait();
         }
 
         public async Task RunAsync(ITask currentTask, IServiceProvider scopeServiceProvider, CancellationToken cancellationToken)

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
@@ -10,13 +8,13 @@ using Telegram.Bot.Framework;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace LatinoNETOnline.Bot.Web.Bots
+namespace LatinoNETOnline.TelegramBot.Web.Bots
 {
-    public class LatinoNETOnlineTelegramBot : BotBase<LatinoNETOnlineTelegramBot>
+    public class LatinoNetOnlineTelegramBot : BotBase<LatinoNetOnlineTelegramBot>
     {
-        private readonly ILogger<LatinoNETOnlineTelegramBot> _logger;
+        private readonly ILogger<LatinoNetOnlineTelegramBot> _logger;
 
-        public LatinoNETOnlineTelegramBot(IOptions<BotOptions<LatinoNETOnlineTelegramBot>> botOptions, ILogger<LatinoNETOnlineTelegramBot> logger)
+        public LatinoNetOnlineTelegramBot(IOptions<BotOptions<LatinoNetOnlineTelegramBot>> botOptions, ILogger<LatinoNetOnlineTelegramBot> logger)
             : base(botOptions)
         {
             _logger = logger;

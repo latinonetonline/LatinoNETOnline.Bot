@@ -33,7 +33,7 @@ jobs:
       run:  dotnet publish -o app
       
     - name: Create symbolic link DockerFile
-      run: ln -s LatinoNETOnline.Bot.Web/Dockerfile Dockerfile
+      run: ln -s LatinoNETOnline.TelegramBot.Web/Dockerfile Dockerfile
       
     - name: herokuPush
       uses: actions/heroku@master

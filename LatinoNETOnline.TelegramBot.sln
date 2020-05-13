@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30001.183
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LatinoNETOnline.Bot.Web", "LatinoNETOnline.Bot.Web\LatinoNETOnline.Bot.Web.csproj", "{7305BDEA-D4C1-41BF-8319-8BBB11FFED5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LatinoNETOnline.TelegramBot.Web", "LatinoNETOnline.TelegramBot.Web\LatinoNETOnline.TelegramBot.Web.csproj", "{7305BDEA-D4C1-41BF-8319-8BBB11FFED5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
