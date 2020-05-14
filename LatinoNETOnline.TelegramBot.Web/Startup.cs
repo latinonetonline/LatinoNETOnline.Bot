@@ -66,6 +66,7 @@ namespace LatinoNETOnline.TelegramBot.Web
 
             services.AddTelegramBot(echoBotOptions)
                 .AddUpdateHandler<NextEventCommand>()
+                .AddUpdateHandler<BroadcastNewEventCommand>()
                 .Configure();
 
             services.AddTask<BotUpdateGetterTask<LatinoNetOnlineTelegramBot>>();
