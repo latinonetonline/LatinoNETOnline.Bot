@@ -17,7 +17,7 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
 
     public class SubscribeCommand : CommandBase<SubscribeCommandArgs>
     {
-        public SubscribeCommand() : base("suscribirse")
+        public SubscribeCommand() : base("subscribirse")
         {
 
         }

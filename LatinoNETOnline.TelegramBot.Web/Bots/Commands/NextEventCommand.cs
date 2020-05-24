@@ -23,7 +23,7 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
     {
         private readonly IEventService _service;
 
-        public NextEventCommand(IEventService service) : base("siguiente-evento")
+        public NextEventCommand(IEventService service) : base("siguienteevento")
         {
             _service = service;
         }
