@@ -7,6 +7,7 @@ using LatinoNETOnline.TelegramBot.Services.Models;
 using Telegram.Bot.Framework;
 using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
 {
@@ -22,7 +23,7 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
     {
         private readonly IEventService _service;
 
-        public NextEventCommand(IEventService service) : base("nextevent")
+        public NextEventCommand(IEventService service) : base("siguiente-evento")
         {
             _service = service;
         }
@@ -30,11 +31,39 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
         public override async Task<UpdateHandlingResult> HandleCommand(Update update, NextEventCommandArgs args)
         {
             Event @event = await _service.GetNextEventAsync();
+            if (@event.Date < DateTime.Now.ToUniversalTime())
+            {
+                await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id, @"Por le momento no se ha cargado un nuevo evento.", replyToMessageId: update.Message.MessageId);
+            }
+            else
+            {
+                Message msg = await Bot.Client.SendPhotoAsync(update.Message.Chat.Id,
+                new FileToSend(new Uri(@event.ImageUrl)), replyToMessageId: update.Message.MessageId);
 
-            await Bot.Client.SendPhotoAsync(update.Message.Chat.Id,
-                new FileToSend(new Uri(@event.ImageUrl)),
-                "Este es el siguente evento!!",
-                replyToMessageId: update.Message.MessageId);
+                await Bot.Client.SendTextMessageAsync(986536895,
+                    @"🚨 *Proximo Evento* 🚨" +
+                    Environment.NewLine +
+                    Environment.NewLine +
+                    $"🕔Cuando: {@event.Date.ToLongDateString()}" +
+                    Environment.NewLine +
+                    Environment.NewLine +
+                    $"📚Tema: {@event.Title}" +
+                    Environment.NewLine +
+                    Environment.NewLine +
+                    $"🎤Speaker: {@event.Speaker}" +
+                    Environment.NewLine +
+                    Environment.NewLine +
+                    $"🖥Donde: https://latinonet.online/live" +
+                    Environment.NewLine +
+                    Environment.NewLine +
+                    $"Para saber en que momento exacto empezamos visita https://latinonet.online" +
+                    Environment.NewLine +
+                    Environment.NewLine +
+                    $"Los esperamos! 😉",
+                     ParseMode.Markdown,
+                     replyToMessageId: msg.MessageId);
+            }
+
 
             return UpdateHandlingResult.Continue;
         }

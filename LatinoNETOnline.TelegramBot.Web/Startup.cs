@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 
 using LatinoNETOnline.TelegramBot.Services.Abstracts;
@@ -6,6 +5,7 @@ using LatinoNETOnline.TelegramBot.Services.Concretes;
 using LatinoNETOnline.TelegramBot.Services.Options;
 using LatinoNETOnline.TelegramBot.Web.Bots;
 using LatinoNETOnline.TelegramBot.Web.Bots.Commands;
+using LatinoNETOnline.TelegramBot.Web.Services.Abstracts;
 using LatinoNETOnline.TelegramBot.Web.Services.Concretes;
 using LatinoNETOnline.TelegramBot.Web.Tasks;
 
@@ -18,8 +18,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 using Octokit;
-
-using RecurrentTasks;
 
 using Telegram.Bot.Framework;
 
@@ -42,6 +40,7 @@ namespace LatinoNETOnline.TelegramBot.Web
 
             services.AddSingleton<IGitHubService, GitHubService>();
             services.AddSingleton<IEventService, EventService>();
+            services.AddTransient<IBotService, BotService>();
             services.AddHttpClient();
 
             #region GitHub
@@ -66,7 +65,8 @@ namespace LatinoNETOnline.TelegramBot.Web
 
             services.AddTelegramBot(echoBotOptions)
                 .AddUpdateHandler<NextEventCommand>()
-                .AddUpdateHandler<BroadcastNewEventCommand>()
+                .AddUpdateHandler<SubscribeCommand>()
+                .AddUpdateHandler<UnsubscribeCommand>()
                 .Configure();
 
             services.AddTask<BotUpdateGetterTask<LatinoNetOnlineTelegramBot>>();
@@ -99,8 +99,8 @@ namespace LatinoNETOnline.TelegramBot.Web
 
             if (env.IsDevelopment())
             {
-                app.UseTelegramBotLongPolling<LatinoNetOnlineTelegramBot>();
-                app.StartTask<BotUpdateGetterTask<LatinoNetOnlineTelegramBot>>(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(3));
+                //app.UseTelegramBotLongPolling<LatinoNetOnlineTelegramBot>();
+                //app.StartTask<BotUpdateGetterTask<LatinoNetOnlineTelegramBot>>(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(3));
                 logger.LogInformation("Update getting task is scheduled for bot " + nameof(LatinoNetOnlineTelegramBot));
             }
             else
