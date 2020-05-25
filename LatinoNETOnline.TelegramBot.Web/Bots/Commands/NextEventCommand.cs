@@ -23,7 +23,7 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
     {
         private readonly IEventService _service;
 
-        public NextEventCommand(IEventService service) : base("siguienteevento")
+        public NextEventCommand(IEventService service) : base("siguiente_evento")
         {
             _service = service;
         }
@@ -40,7 +40,7 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
                 Message msg = await Bot.Client.SendPhotoAsync(update.Message.Chat.Id,
                 new FileToSend(new Uri(@event.ImageUrl)), replyToMessageId: update.Message.MessageId);
 
-                await Bot.Client.SendTextMessageAsync(986536895,
+                await Bot.Client.SendTextMessageAsync(update.Message.Chat.Id,
                     @"🚨 *Proximo Evento* 🚨" +
                     Environment.NewLine +
                     Environment.NewLine +
@@ -56,12 +56,12 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
                     $"🖥Donde: https://latinonet.online/live" +
                     Environment.NewLine +
                     Environment.NewLine +
-                    $"Para saber en que momento exacto empezamos visita https://latinonet.online" +
-                    Environment.NewLine +
-                    Environment.NewLine +
                     $"Los esperamos! 😉",
                      ParseMode.Markdown,
                      replyToMessageId: msg.MessageId);
+
+
+
             }
 
 

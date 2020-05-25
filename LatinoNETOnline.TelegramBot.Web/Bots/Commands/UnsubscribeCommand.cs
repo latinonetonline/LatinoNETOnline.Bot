@@ -17,7 +17,7 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
 
     public class UnsubscribeCommand : CommandBase<UnsubscribeCommandArgs>
     {
-        public UnsubscribeCommand() : base("desuscribirse")
+        public UnsubscribeCommand() : base("desuscribirme")
         {
 
         }
@@ -28,8 +28,10 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
 
             await Bot.Client.SendTextMessageAsync(userIdToSubscribe, @"Es una pena que te vayas 😭" +
                     Environment.NewLine +
-                    "Pero no olvides que siempre vas a poder subscribirte de nuevo",
+                    Environment.NewLine +
+                    "Pero recuerda que puedes volver a suscribirte cuando quieras para seguir recibiendo las últimas noticias de la comunidad. Hasta pronto!",
                      ParseMode.Markdown);
+
             return UpdateHandlingResult.Continue;
         }
     }

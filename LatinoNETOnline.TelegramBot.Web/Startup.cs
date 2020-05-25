@@ -5,7 +5,6 @@ using LatinoNETOnline.TelegramBot.Services.Concretes;
 using LatinoNETOnline.TelegramBot.Services.Options;
 using LatinoNETOnline.TelegramBot.Web.Bots;
 using LatinoNETOnline.TelegramBot.Web.Bots.Commands;
-using LatinoNETOnline.TelegramBot.Web.Services.Abstracts;
 using LatinoNETOnline.TelegramBot.Web.Services.Concretes;
 using LatinoNETOnline.TelegramBot.Web.Tasks;
 
@@ -40,7 +39,7 @@ namespace LatinoNETOnline.TelegramBot.Web
 
             services.AddSingleton<IGitHubService, GitHubService>();
             services.AddSingleton<IEventService, EventService>();
-            services.AddTransient<IBotService, BotService>();
+
             services.AddHttpClient();
 
             #region GitHub
