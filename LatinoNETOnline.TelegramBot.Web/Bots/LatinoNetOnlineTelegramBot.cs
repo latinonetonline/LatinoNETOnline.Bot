@@ -49,7 +49,8 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots
                     await Client.SendTextMessageAsync(update.CallbackQuery.Message.Chat.Id,
                     "Seleccionaste Siguiente Evento");
                 }
-                else if (update.Message?.NewChatMembers?.Length > 0)
+
+                if (update.Message.NewChatMembers.Length > 0)
                 {
                     foreach (var member in update.Message.NewChatMembers)
                     {

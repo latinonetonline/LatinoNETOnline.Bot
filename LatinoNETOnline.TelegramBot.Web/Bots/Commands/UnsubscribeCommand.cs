@@ -17,7 +17,7 @@ namespace LatinoNETOnline.TelegramBot.Web.Bots.Commands
 
     public class UnsubscribeCommand : CommandBase<UnsubscribeCommandArgs>
     {
-        public UnsubscribeCommand() : base("desuscribirme")
+        public UnsubscribeCommand() : base("desubscribirme")
         {
 
         }
