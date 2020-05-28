@@ -1,4 +1,4 @@
-﻿namespace LatinoNETOnline.TelegramBot.Services.Models
+﻿namespace LatinoNETOnline.TelegramBot.Domain
 {
     public class FileContent
     {

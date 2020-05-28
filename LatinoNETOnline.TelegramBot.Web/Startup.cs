@@ -1,12 +1,9 @@
 using System.Threading.Tasks;
 
-using LatinoNETOnline.TelegramBot.Services.Abstracts;
-using LatinoNETOnline.TelegramBot.Services.Concretes;
-using LatinoNETOnline.TelegramBot.Services.Options;
-using LatinoNETOnline.TelegramBot.Web.Bots;
-using LatinoNETOnline.TelegramBot.Web.Bots.Commands;
-using LatinoNETOnline.TelegramBot.Web.Services.Concretes;
-using LatinoNETOnline.TelegramBot.Web.Tasks;
+using LatinoNETOnline.TelegramBot.Application.Bots;
+using LatinoNETOnline.TelegramBot.Infrastructure.Providers;
+
+using MediatR;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,8 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
-using Octokit;
 
 using Telegram.Bot.Framework;
 
@@ -31,50 +26,23 @@ namespace LatinoNETOnline.TelegramBot.Web
             Configuration = configuration;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
 
-            services.AddSingleton<IGitHubService, GitHubService>();
-            services.AddSingleton<IEventService, EventService>();
+            services.AddOptions();
 
             services.AddHttpClient();
 
-            #region GitHub
+            services.AddGitHubClient(Configuration);
 
-            var githubOptions = new GitHubOptions();
-            Configuration.GetSection(nameof(GitHubOptions)).Bind(githubOptions);
-            GitHubClient githubClient = new GitHubClient(new ProductHeaderValue(nameof(LatinoNETOnline)));
-            Credentials basicAuth = new Credentials(githubOptions.Token);
-            githubClient.Credentials = basicAuth;
+            services.AddTelegramBot(Configuration);
 
-            services.AddSingleton<IGitHubClient, GitHubClient>(service => githubClient);
+            services.AddServices();
 
-            services.Configure<GitHubOptions>(Configuration.GetSection(nameof(GitHubOptions)));
-
-            #endregion
-
-
-            #region Echoer Bot
-
-            var echoBotOptions = new BotOptions<LatinoNetOnlineTelegramBot>();
-            Configuration.GetSection(nameof(LatinoNetOnlineTelegramBot)).Bind(echoBotOptions);
-
-            services.AddTelegramBot(echoBotOptions)
-                .AddUpdateHandler<NextEventCommand>()
-                .AddUpdateHandler<SubscribeCommand>()
-                .AddUpdateHandler<UnsubscribeCommand>()
-                .AddUpdateHandler<InfoCommand>()
-                .Configure();
-
-            services.AddTask<BotUpdateGetterTask<LatinoNetOnlineTelegramBot>>();
-
-            #endregion
+            services.AddMediatR(typeof(LatinoNetOnlineTelegramBot));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
 
@@ -99,8 +67,6 @@ namespace LatinoNETOnline.TelegramBot.Web
 
             if (env.IsDevelopment())
             {
-                //app.UseTelegramBotLongPolling<LatinoNetOnlineTelegramBot>();
-                //app.StartTask<BotUpdateGetterTask<LatinoNetOnlineTelegramBot>>(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(3));
                 logger.LogInformation("Update getting task is scheduled for bot " + nameof(LatinoNetOnlineTelegramBot));
             }
             else

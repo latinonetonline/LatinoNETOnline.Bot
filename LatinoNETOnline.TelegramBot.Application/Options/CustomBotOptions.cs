@@ -2,7 +2,7 @@
 using Telegram.Bot.Framework;
 using Telegram.Bot.Framework.Abstractions;
 
-namespace LatinoNETOnline.TelegramBot.Web.Options
+namespace LatinoNETOnline.TelegramBot.Application.Options
 {
     public class CustomBotOptions<TBot> : BotOptions<TBot> where TBot : class, IBot
     {

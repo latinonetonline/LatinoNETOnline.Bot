@@ -1,4 +1,4 @@
-﻿namespace LatinoNETOnline.TelegramBot.Services.Options
+﻿namespace LatinoNETOnline.TelegramBot.Infrastructure.Options
 {
     public class GitHubOptions
     {

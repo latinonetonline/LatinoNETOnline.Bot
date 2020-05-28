@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-using LatinoNETOnline.TelegramBot.Services.Models;
+using LatinoNETOnline.TelegramBot.Domain;
 
-namespace LatinoNETOnline.TelegramBot.Services.Abstracts
+namespace LatinoNETOnline.TelegramBot.Application.Services.Abstracts
 {
     public interface IEventService
     {
