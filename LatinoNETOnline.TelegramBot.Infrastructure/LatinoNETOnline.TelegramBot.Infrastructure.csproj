@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LatinoNETOnline.TelegramBot.Application\LatinoNETOnline.TelegramBot.Application.csproj" />
-    <ProjectReference Include="..\LatinoNETOnline.TelegramBot.Domain\LatinoNETOnline.TelegramBot.Domain.csproj" />
   </ItemGroup>
 
 </Project>
