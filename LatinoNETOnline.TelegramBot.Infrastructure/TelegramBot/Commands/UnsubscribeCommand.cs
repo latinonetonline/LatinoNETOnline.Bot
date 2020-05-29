@@ -28,7 +28,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands
         public override async Task<UpdateHandlingResult> HandleCommand(Update update, UnsubscribeCommandArgs args)
         {
             var userIdToUnsubscribe = update.Message.From.Id;
-            var replyToMessageId = update.Message.MessageId;
+            var replyToMessageId = update.Message.From.Id == update.Message.Chat.Id ? update.Message.MessageId : default;
 
             UnsubscribeUserRequest unsubscribeUserRequest = new UnsubscribeUserRequest(userIdToUnsubscribe, replyToMessageId);
 

@@ -27,12 +27,6 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Subscription.Sub
 
             if (user is null)
             {
-                await _botMessageService.SendText("Actualmente ya te encuentras subscripto. Que Bueno!",
-                    request.UserId,
-                    request.ReplyToMessageId);
-            }
-            else
-            {
                 SubscribedUser subscribedUser = await _subscribedUsersRepository.OpenSubscribedUser();
                 subscribedUser.UserId = request.UserId;
 
@@ -40,7 +34,7 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Subscription.Sub
                 await _subscribedUsersRepository.Insert(subscribedUser);
 
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.AppendLine("🎉 *Bienvenido/a* 🎉");
+                stringBuilder.AppendLine($"🎉 *Bienvenido/a* {request.UserFirstName} 🎉");
                 stringBuilder.AppendLine();
                 stringBuilder.AppendLine("Nos alegra que te hayas suscrito al bot de Latino .NET Online 🤖");
                 stringBuilder.AppendLine();
@@ -49,6 +43,12 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Subscription.Sub
                 stringBuilder.AppendLine("Estarás al tanto de los anuncios y recordatorios de nuestros próximos webinars📲, te  avisaremos cuando haya un nuevo artículo en nuestro blog, estarás al tanto de eventos de otras comunidades🤝🏻, y más! Todo en este mismo chat.");
 
                 await _botMessageService.SendText(stringBuilder.ToString(),
+                    request.UserId,
+                    request.ReplyToMessageId);
+            }
+            else
+            {
+                await _botMessageService.SendText("Actualmente ya te encuentras subscripto. Que Bueno!",
                     request.UserId,
                     request.ReplyToMessageId);
             }

@@ -27,9 +27,10 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands
         public override async Task<UpdateHandlingResult> HandleCommand(Update update, SubscribeCommandArgs args)
         {
             var userIdToSubscribe = update.Message.From.Id;
-            var replyToMessageId = update.Message.MessageId;
+            var userFirstName = update.Message.From.FirstName;
+            var replyToMessageId = update.Message.From.Id == update.Message.Chat.Id ? update.Message.MessageId : default;
 
-            SubscribeUserRequest subscribeUserRequest = new SubscribeUserRequest(userIdToSubscribe, replyToMessageId);
+            SubscribeUserRequest subscribeUserRequest = new SubscribeUserRequest(userIdToSubscribe, userFirstName, replyToMessageId);
 
             await _mediator.Send(subscribeUserRequest);
 
