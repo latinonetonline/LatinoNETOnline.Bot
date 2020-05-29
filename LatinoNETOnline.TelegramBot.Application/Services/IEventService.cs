@@ -2,7 +2,7 @@
 
 using LatinoNETOnline.TelegramBot.Domain;
 
-namespace LatinoNETOnline.TelegramBot.Application.Services.Abstracts
+namespace LatinoNETOnline.TelegramBot.Application.Services
 {
     public interface IEventService
     {

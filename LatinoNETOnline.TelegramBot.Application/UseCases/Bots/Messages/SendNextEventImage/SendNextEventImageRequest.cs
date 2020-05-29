@@ -2,11 +2,11 @@
 
 using MediatR;
 
-namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.NextEventImageMessage
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEventImage
 {
-    public class NextEventImageRequest : IRequest<NextEventImageResponse>
+    public class SendNextEventImageRequest : IRequest<SendNextEventImageResponse>
     {
-        public NextEventImageRequest(long chatId, Uri imageUri, int? replyToMessageId)
+        public SendNextEventImageRequest(long chatId, Uri imageUri, int? replyToMessageId)
         {
             ChatId = chatId;
             ImageUri = imageUri;

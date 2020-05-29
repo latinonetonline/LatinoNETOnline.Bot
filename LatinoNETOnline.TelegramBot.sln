@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30001.183
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LatinoNETOnline.TelegramBot.Web", "LatinoNETOnline.TelegramBot.Web\LatinoNETOnline.TelegramBot.Web.csproj", "{7305BDEA-D4C1-41BF-8319-8BBB11FFED5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LatinoNETOnline.TelegramBot.Application", "LatinoNETOnline.TelegramBot.Application\LatinoNETOnline.TelegramBot.Application.csproj", "{C3528D63-8EC2-4932-9167-CD9098570DC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LatinoNETOnline.TelegramBot.Application", "LatinoNETOnline.TelegramBot.Application\LatinoNETOnline.TelegramBot.Application.csproj", "{C3528D63-8EC2-4932-9167-CD9098570DC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LatinoNETOnline.TelegramBot.Domain", "LatinoNETOnline.TelegramBot.Domain\LatinoNETOnline.TelegramBot.Domain.csproj", "{D24912D5-3A86-4CD9-8E08-23B1D8E0EEC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LatinoNETOnline.TelegramBot.Domain", "LatinoNETOnline.TelegramBot.Domain\LatinoNETOnline.TelegramBot.Domain.csproj", "{D24912D5-3A86-4CD9-8E08-23B1D8E0EEC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LatinoNETOnline.TelegramBot.Infrastructure", "LatinoNETOnline.TelegramBot.Infrastructure\LatinoNETOnline.TelegramBot.Infrastructure.csproj", "{CD057518-B2A0-49ED-86E4-5C16932067F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LatinoNETOnline.TelegramBot.Infrastructure", "LatinoNETOnline.TelegramBot.Infrastructure\LatinoNETOnline.TelegramBot.Infrastructure.csproj", "{CD057518-B2A0-49ED-86E4-5C16932067F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

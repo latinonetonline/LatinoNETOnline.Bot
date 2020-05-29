@@ -7,7 +7,7 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.InlineKeyboardButtons;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace LatinoNETOnline.TelegramBot.Application.Bots.Commands
+namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands
 {
     public class InfoCommandArgs : ICommandArgs
     {
@@ -17,7 +17,7 @@ namespace LatinoNETOnline.TelegramBot.Application.Bots.Commands
     }
     public class InfoCommand : CommandBase<InfoCommandArgs>
     {
-        public InfoCommand() : base("info")
+        public InfoCommand() : base(CommandConsts.INFO)
         {
 
         }

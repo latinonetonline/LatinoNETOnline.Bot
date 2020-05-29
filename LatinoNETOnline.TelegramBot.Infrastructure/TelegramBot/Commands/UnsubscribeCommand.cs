@@ -6,7 +6,7 @@ using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace LatinoNETOnline.TelegramBot.Application.Bots.Commands
+namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands
 {
     public class UnsubscribeCommandArgs : ICommandArgs
     {
@@ -17,7 +17,7 @@ namespace LatinoNETOnline.TelegramBot.Application.Bots.Commands
 
     public class UnsubscribeCommand : CommandBase<UnsubscribeCommandArgs>
     {
-        public UnsubscribeCommand() : base("desubscribirme")
+        public UnsubscribeCommand() : base(CommandConsts.UNSUBSCRIBE)
         {
 
         }

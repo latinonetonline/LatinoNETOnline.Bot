@@ -1,6 +1,6 @@
 ﻿
-using LatinoNETOnline.TelegramBot.Application.Bots;
-using LatinoNETOnline.TelegramBot.Application.Bots.Commands;
+using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot;
+using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,10 +13,10 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.Providers
     {
         public static IServiceCollection AddTelegramBot(this IServiceCollection services, IConfiguration configuration)
         {
-            var echoBotOptions = new BotOptions<LatinoNetOnlineTelegramBot>();
-            configuration.GetSection(nameof(LatinoNetOnlineTelegramBot)).Bind(echoBotOptions);
+            var botOptions = new BotOptions<LatinoNetOnlineTelegramBot>();
+            configuration.GetSection(nameof(LatinoNetOnlineTelegramBot)).Bind(botOptions);
 
-            services.AddTelegramBot(echoBotOptions)
+            services.AddTelegramBot(botOptions)
                 .AddUpdateHandler<NextEventCommand>()
                 .AddUpdateHandler<SubscribeCommand>()
                 .AddUpdateHandler<UnsubscribeCommand>()

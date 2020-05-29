@@ -2,19 +2,21 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-using LatinoNETOnline.TelegramBot.Application.Bots;
+using LatinoNETOnline.TelegramBot.Application.Services;
 
-using Telegram.Bot.Framework.Abstractions;
-using Telegram.Bot.Types.Enums;
+using MediatR;
 
-namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.NextEventTextMessage
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEventText
 {
-    public class NextEventTextHandler : AsyncBotMessageHandlerBase<NextEventTextRequest>
+    public class SendNextEventTextHandler : AsyncRequestHandler<SendNextEventTextRequest>
     {
-        public NextEventTextHandler(IBotManager<LatinoNetOnlineTelegramBot> botManager) : base(botManager)
-        { }
+        private readonly IBotMessageService _botMessageService;
+        public SendNextEventTextHandler(IBotMessageService botMessageService)
+        {
+            _botMessageService = botMessageService;
+        }
 
-        protected override Task Handle(NextEventTextRequest request, CancellationToken cancellationToken)
+        protected override Task Handle(SendNextEventTextRequest request, CancellationToken cancellationToken)
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("🚨 *Proximo Evento* 🚨");
@@ -30,10 +32,9 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.NextEve
             stringBuilder.AppendLine();
             stringBuilder.AppendLine("Los esperamos! 😉");
 
-            return Bot.Client.SendTextMessageAsync(request.ChatId,
-                stringBuilder.ToString(),
-                 ParseMode.Markdown,
-                 replyToMessageId: request.ReplyToMessageId);
+            return _botMessageService.SendText(stringBuilder.ToString(),
+                request.ChatId,
+                request.ReplyToMessageId);
         }
     }
 }

@@ -1,7 +1,8 @@
 using System.Threading.Tasks;
 
-using LatinoNETOnline.TelegramBot.Application.Bots;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEvent;
 using LatinoNETOnline.TelegramBot.Infrastructure.Providers;
+using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot;
 
 using MediatR;
 
@@ -40,7 +41,7 @@ namespace LatinoNETOnline.TelegramBot.Web
 
             services.AddServices();
 
-            services.AddMediatR(typeof(LatinoNetOnlineTelegramBot));
+            services.AddMediatR(typeof(SendNextEventRequest));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)

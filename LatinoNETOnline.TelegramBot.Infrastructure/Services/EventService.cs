@@ -1,13 +1,10 @@
 ﻿using System.Text.Json;
 using System.Threading.Tasks;
 
-using LatinoNETOnline.TelegramBot.Application.Options;
-using LatinoNETOnline.TelegramBot.Application.Services.Abstracts;
+using LatinoNETOnline.TelegramBot.Application.Services;
 using LatinoNETOnline.TelegramBot.Domain;
 
-using Microsoft.Extensions.Options;
-
-namespace LatinoNETOnline.TelegramBot.Application.Services.Concretes
+namespace LatinoNETOnline.TelegramBot.Infrastructure.Services
 {
     public class EventService : IEventService
     {

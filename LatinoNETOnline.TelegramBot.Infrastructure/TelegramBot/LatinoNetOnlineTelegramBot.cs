@@ -8,7 +8,7 @@ using Telegram.Bot.Framework;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace LatinoNETOnline.TelegramBot.Application.Bots
+namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot
 {
     public class LatinoNetOnlineTelegramBot : BotBase<LatinoNetOnlineTelegramBot>
     {

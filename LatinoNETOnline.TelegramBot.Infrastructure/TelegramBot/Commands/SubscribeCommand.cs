@@ -6,7 +6,7 @@ using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace LatinoNETOnline.TelegramBot.Application.Bots.Commands
+namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands
 {
     public class SubscribeCommandArgs : ICommandArgs
     {
@@ -17,7 +17,7 @@ namespace LatinoNETOnline.TelegramBot.Application.Bots.Commands
 
     public class SubscribeCommand : CommandBase<SubscribeCommandArgs>
     {
-        public SubscribeCommand() : base("subscribirme")
+        public SubscribeCommand() : base(CommandConsts.SUBSCRIBE)
         {
 
         }

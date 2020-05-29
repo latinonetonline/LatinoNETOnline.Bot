@@ -12,7 +12,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.Providers
     {
         public static IServiceCollection AddGitHubClient(this IServiceCollection services, IConfiguration configuration)
         {
-           
+
             var githubOptions = new GitHubOptions();
 
             configuration.GetSection(nameof(GitHubOptions)).Bind(githubOptions);
