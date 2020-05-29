@@ -2,9 +2,10 @@
 using System.Threading.Tasks;
 
 using LatinoNETOnline.TelegramBot.Application.Bots;
-using LatinoNETOnline.TelegramBot.Application.Mediators.Bots.Messages.NextEventImageMessage;
-using LatinoNETOnline.TelegramBot.Application.Mediators.Bots.Messages.NextEventTextMessage;
+
 using LatinoNETOnline.TelegramBot.Application.Services.Abstracts;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.NextEventImageMessage;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.NextEventTextMessage;
 
 using MediatR;
 

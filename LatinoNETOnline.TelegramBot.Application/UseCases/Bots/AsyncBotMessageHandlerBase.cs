@@ -6,7 +6,7 @@ using MediatR;
 using Telegram.Bot.Framework;
 using Telegram.Bot.Framework.Abstractions;
 
-namespace LatinoNETOnline.TelegramBot.Application.Mediators.Bots
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots
 {
     public abstract class AsyncBotMessageHandlerBase<TRequest> : AsyncRequestHandler<TRequest> where TRequest : IRequest
     {

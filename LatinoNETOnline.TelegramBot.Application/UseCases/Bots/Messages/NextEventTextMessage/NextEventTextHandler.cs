@@ -7,7 +7,7 @@ using LatinoNETOnline.TelegramBot.Application.Bots;
 using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types.Enums;
 
-namespace LatinoNETOnline.TelegramBot.Application.Mediators.Bots.Messages.NextEventTextMessage
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.NextEventTextMessage
 {
     public class NextEventTextHandler : AsyncBotMessageHandlerBase<NextEventTextRequest>
     {

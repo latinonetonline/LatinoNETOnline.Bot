@@ -2,7 +2,7 @@
 
 using MediatR;
 
-namespace LatinoNETOnline.TelegramBot.Application.Mediators.Bots.Messages.NextEventTextMessage
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.NextEventTextMessage
 {
     public class NextEventTextRequest : IRequest
     {

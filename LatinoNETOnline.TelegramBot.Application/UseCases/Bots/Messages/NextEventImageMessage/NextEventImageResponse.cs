@@ -1,4 +1,4 @@
-﻿namespace LatinoNETOnline.TelegramBot.Application.Mediators.Bots.Messages.NextEventImageMessage
+﻿namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.NextEventImageMessage
 {
     public class NextEventImageResponse
     {

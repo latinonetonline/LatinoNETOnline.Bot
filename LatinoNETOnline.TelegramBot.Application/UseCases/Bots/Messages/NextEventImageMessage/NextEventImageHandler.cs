@@ -6,7 +6,7 @@ using LatinoNETOnline.TelegramBot.Application.Bots;
 using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
 
-namespace LatinoNETOnline.TelegramBot.Application.Mediators.Bots.Messages.NextEventImageMessage
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.NextEventImageMessage
 {
     public class NextEventImageHandler : BotMessageHandlerBase<NextEventImageRequest, NextEventImageResponse>
     {
