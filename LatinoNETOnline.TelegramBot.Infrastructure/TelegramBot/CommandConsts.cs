@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot
+﻿namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot
 {
     public class CommandConsts
     {

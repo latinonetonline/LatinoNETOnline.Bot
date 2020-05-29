@@ -42,6 +42,8 @@ namespace LatinoNETOnline.TelegramBot.Web
             services.AddServices();
 
             services.AddMediatR(typeof(SendNextEventRequest));
+
+            services.AddFluentMigrator(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)

@@ -1,10 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+
+using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Subscription.UnsubscribeUser;
+
+using MediatR;
 
 using Telegram.Bot.Framework;
 using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
 
 namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands
 {
@@ -17,20 +19,20 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands
 
     public class UnsubscribeCommand : CommandBase<UnsubscribeCommandArgs>
     {
-        public UnsubscribeCommand() : base(CommandConsts.UNSUBSCRIBE)
+        private readonly IMediator _mediator;
+        public UnsubscribeCommand(IMediator mediator) : base(CommandConsts.UNSUBSCRIBE)
         {
-
+            _mediator = mediator;
         }
 
         public override async Task<UpdateHandlingResult> HandleCommand(Update update, UnsubscribeCommandArgs args)
         {
-            var userIdToSubscribe = update.Message.From.Id;
+            var userIdToUnsubscribe = update.Message.From.Id;
+            var replyToMessageId = update.Message.MessageId;
 
-            await Bot.Client.SendTextMessageAsync(userIdToSubscribe, @"Es una pena que te vayas 😭" +
-                    Environment.NewLine +
-                    Environment.NewLine +
-                    "Pero recuerda que puedes volver a suscribirte cuando quieras para seguir recibiendo las últimas noticias de la comunidad. Hasta pronto!",
-                     ParseMode.Markdown);
+            UnsubscribeUserRequest unsubscribeUserRequest = new UnsubscribeUserRequest(userIdToUnsubscribe, replyToMessageId);
+
+            await _mediator.Send(unsubscribeUserRequest);
 
             return UpdateHandlingResult.Continue;
         }
