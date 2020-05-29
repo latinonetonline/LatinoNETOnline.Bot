@@ -9,6 +9,7 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -35,6 +36,16 @@ namespace LatinoNETOnline.TelegramBot.Web
 
             services.AddHttpClient();
 
+            services.AddAuthorization();
+
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = Configuration["IdentityServer:Host"];
+                    options.ApiName = Configuration["IdentityServer:ApiResource"];
+                    options.RequireHttpsMetadata = false;
+                });
+
             services.AddGitHubClient(Configuration);
 
             services.AddTelegramBot(Configuration);
@@ -44,9 +55,13 @@ namespace LatinoNETOnline.TelegramBot.Web
             services.AddMediatR(typeof(SendNextEventRequest));
 
             services.AddFluentMigrator(Configuration);
+
+            services.AddApiVersioning(Configuration);
+
+            services.AddSwagger();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IApiVersionDescriptionProvider provider)
         {
 
             ILogger logger = loggerFactory.CreateLogger<Startup>();
@@ -85,6 +100,10 @@ namespace LatinoNETOnline.TelegramBot.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -93,6 +112,8 @@ namespace LatinoNETOnline.TelegramBot.Web
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
+
+            app.UseSwagger(provider);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.DataAccess.Repositories
         }
         public Task Delete(SubscribedUser subscribedUser)
         {
-            return _db.DeleteAsync(subscribedUser);
+            return _db.DeleteAsync((Entities.SubscribedUser)subscribedUser);
         }
 
         public async Task<IEnumerable<SubscribedUser>> GetAll()
