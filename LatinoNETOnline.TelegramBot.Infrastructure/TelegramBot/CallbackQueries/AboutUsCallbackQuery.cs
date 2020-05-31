@@ -27,7 +27,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.CallbackQueries
 
 
             await bot.Client.SendTextMessageAsync(update.CallbackQuery.Message.Chat.Id,
-                    stringBuilder.ToString());
+                    stringBuilder.ToString(), ParseMode.Markdown);
 
             return UpdateHandlingResult.Continue;
         }
