@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
 
-using LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.AnnouncementNextEvent;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.AnnouncementHourLeft;
 
 using MediatR;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LatinoNETOnline.TelegramBot.Web.UseCases.V1.AnnouncementSendNextEvent
+namespace LatinoNETOnline.TelegramBot.Web.UseCases.V1.AnnouncementHourLeftNextEvent
 {
     [Authorize]
     [ApiVersion("1.0")]
@@ -15,10 +15,10 @@ namespace LatinoNETOnline.TelegramBot.Web.UseCases.V1.AnnouncementSendNextEvent
     [ApiController]
     public class AnnouncementsController : ControllerBase
     {
-        [HttpPost("NextEvent")]
+        [HttpPost("HourLeft")]
         public async Task<IActionResult> Post([FromServices] IMediator mediator)
         {
-            AnnouncementNextEventRequest request = new AnnouncementNextEventRequest();
+            AnnouncementHourLeftRequest request = new AnnouncementHourLeftRequest();
             await mediator.Send(request);
 
             return Ok();
