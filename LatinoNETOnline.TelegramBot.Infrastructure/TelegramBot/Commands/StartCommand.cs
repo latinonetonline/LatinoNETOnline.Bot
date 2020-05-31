@@ -35,13 +35,13 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands
                     new []
                     {
                         InlineKeyboardButton.WithCallbackData("Siguiente Evento 🎉", CallbackQueryConst.NEXTEVENT),
-                        InlineKeyboardButton.WithCallbackData("Suscribirse 📝", "https://latinonet.online/links#callforspeaker"),
+                        InlineKeyboardButton.WithCallbackData("Suscribirse 📝", CallbackQueryConst.SUBSCRIBE),
                     }
             });
 
             await Bot.Client.SendTextMessageAsync(
                 chatId: update.Message.Chat.Id,
-                text: "Escoge",
+                text: "¿Que Necesitas? 🤔",
                 replyMarkup: inlineKeyboard
             );
 
