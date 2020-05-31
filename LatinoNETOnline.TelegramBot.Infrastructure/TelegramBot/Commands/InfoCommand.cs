@@ -28,21 +28,23 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands
                     // first row
                     new []
                     {
-                        InlineKeyboardButton.WithCallbackData("Sobre Nosotros 🤝🏻", "sobrenosotros"),
-                        InlineKeyboardButton.WithCallbackData("Nuestras redes 🖥", "nuestrasredes"),
+                        InlineKeyboardButton.WithCallbackData("Sobre Nosotros 🤝🏻", CallbackQueryConst.ABOUTUS),
+                        InlineKeyboardButton.WithCallbackData("Nuestras redes 🖥", CallbackQueryConst.SOCIALNETWORKS),
                     },
                     // second row
                     new []
                     {
-                        InlineKeyboardButton.WithCallbackData("Siguiente Evento 🎉", "siguienteevento"),
-                        InlineKeyboardButton.WithUrl("Call For Speaker 🎤", "https://latinonet.online/links#callforspeaker"),
+                        InlineKeyboardButton.WithCallbackData("Siguiente Evento 🎉", CallbackQueryConst.NEXTEVENT),
+                        InlineKeyboardButton.WithCallbackData("Suscribirse 📝", "https://latinonet.online/links#callforspeaker"),
                     }
-                });
+            });
+
             await Bot.Client.SendTextMessageAsync(
                 chatId: update.Message.Chat.Id,
                 text: "Escoge",
                 replyMarkup: inlineKeyboard
             );
+
             return UpdateHandlingResult.Continue;
         }
     }

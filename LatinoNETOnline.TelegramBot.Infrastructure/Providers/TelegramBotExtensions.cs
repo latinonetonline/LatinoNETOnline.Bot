@@ -1,5 +1,6 @@
 ﻿
 using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot;
+using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.CallbackQueries;
 using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands;
 
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,10 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.Providers
                 .AddUpdateHandler<SubscribeCommand>()
                 .AddUpdateHandler<UnsubscribeCommand>()
                 .AddUpdateHandler<InfoCommand>()
+                .AddUpdateHandler<SocialNetworksCallbackQuery>()
+                .AddUpdateHandler<NextEventCallbackQuery>()
+                .AddUpdateHandler<AboutUsCallbackQuery>()
+                .AddUpdateHandler<SubscribeCallbackQuery>()
                 .Configure();
 
             return services;
