@@ -21,7 +21,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.Providers
                 .AddUpdateHandler<NextEventCommand>()
                 .AddUpdateHandler<SubscribeCommand>()
                 .AddUpdateHandler<UnsubscribeCommand>()
-                .AddUpdateHandler<InfoCommand>()
+                .AddUpdateHandler<StartCommand>()
                 .AddUpdateHandler<SocialNetworksCallbackQuery>()
                 .AddUpdateHandler<NextEventCallbackQuery>()
                 .AddUpdateHandler<AboutUsCallbackQuery>()

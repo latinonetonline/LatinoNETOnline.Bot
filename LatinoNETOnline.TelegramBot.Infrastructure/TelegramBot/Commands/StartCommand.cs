@@ -9,19 +9,19 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands
 {
-    public class InfoCommandArgs : ICommandArgs
+    public class StartCommandArgs : ICommandArgs
     {
         public string RawInput { get; set; }
 
         public string ArgsInput { get; set; }
     }
-    public class InfoCommand : CommandBase<InfoCommandArgs>
+    public class StartCommand : CommandBase<StartCommandArgs>
     {
-        public InfoCommand() : base(CommandConsts.INFO)
+        public StartCommand() : base(CommandConsts.START)
         {
 
         }
-        public override async Task<UpdateHandlingResult> HandleCommand(Update update, InfoCommandArgs args)
+        public override async Task<UpdateHandlingResult> HandleCommand(Update update, StartCommandArgs args)
         {
             var inlineKeyboard = new InlineKeyboardMarkup(new[]
             {
