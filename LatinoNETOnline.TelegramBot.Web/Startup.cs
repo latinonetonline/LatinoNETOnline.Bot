@@ -109,7 +109,7 @@ namespace LatinoNETOnline.TelegramBot.Web
                 endpoints.MapControllers();
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    context.Response.Redirect("swagger");
                 });
             });
 
