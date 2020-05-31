@@ -48,7 +48,7 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Subscription.Sub
             }
             else
             {
-                await _botMessageService.SendText("Actualmente ya te encuentras subscripto. Que Bueno!",
+                await _botMessageService.SendText("Actualmente ya te encuentras suscripto. Que Bueno!",
                     request.UserId,
                     request.ReplyToMessageId);
             }

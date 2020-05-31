@@ -27,7 +27,7 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Subscription.Uns
 
             if (user is null)
             {
-                await _botMessageService.SendText("No te encuentras subscripto",
+                await _botMessageService.SendText("No te encuentras suscripto",
                     request.UserId,
                     request.ReplyToMessageId);
             }
