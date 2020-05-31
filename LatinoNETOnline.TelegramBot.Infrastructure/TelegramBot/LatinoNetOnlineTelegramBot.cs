@@ -24,8 +24,6 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot
         {
             _logger.LogWarning("Unable to handle an update");
 
-            const string unknownUpdateText = "Sorry! I don't know what to do with this message";
-
             if (update.Type == UpdateType.MessageUpdate)
             {
                 //await Client.SendTextMessageAsync(update.Message.Chat.Id,
