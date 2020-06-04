@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using LatinoNETOnline.TelegramBot.Application.Enums;
 using LatinoNETOnline.TelegramBot.Application.Services;
 
 using MediatR;
@@ -18,10 +18,12 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNex
 
         protected override Task Handle(SendNextEventTextRequest request, CancellationToken cancellationToken)
         {
+            var @event = request.Event; 
+
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("🚨 *Proximo Evento* 🚨");
             stringBuilder.AppendLine();
-            stringBuilder.AppendLine($"🕔Cuando: {request.Event.Date.ToLongDateString()}");
+            stringBuilder.AppendLine($"🕔Cuando: {(DayOfWeekSpanish)@event.Date.DayOfWeek} {@event.Date.Day} de {(Month)@event.Date.Month} a las {@event.Date:HH:mm} UTC");
             stringBuilder.AppendLine();
             stringBuilder.AppendLine($"📚Tema: {request.Event.Title}");
             stringBuilder.AppendLine();

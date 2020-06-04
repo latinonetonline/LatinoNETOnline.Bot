@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using LatinoNETOnline.TelegramBot.Application.Repositories;
 using LatinoNETOnline.TelegramBot.Application.Services;
 using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEvent;
-
+using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEventImage;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEventText;
 using MediatR;
 
 namespace LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.AnnouncementNextEvent
@@ -33,8 +34,13 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.Announc
 
                 foreach (var user in users)
                 {
-                    SendNextEventRequest sendNextEventRequest = new SendNextEventRequest(user.UserId, null);
-                    await _mediator.Send(sendNextEventRequest);
+                    var nextEventImageRequest = new SendNextEventImageRequest(user.UserId, new Uri(@event.ImageUrl), null);
+
+                    var nextEventImageResponse = await _mediator.Send(nextEventImageRequest);
+
+                    var nextEventTextRequest = new SendNextEventTextRequest(user.UserId, nextEventImageResponse.MessageId, @event);
+
+                    await _mediator.Send(nextEventTextRequest);
                 }
             }  
         }
