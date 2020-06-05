@@ -7,13 +7,13 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LatinoNETOnline.TelegramBot.Web.UseCases.V1.GetSubscribedUsers
+namespace LatinoNETOnline.TelegramBot.Web.UseCases.V1.GetSubscribedChats
 {
     [Authorize]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/SubscribedUser")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    public sealed class SubscribedUsersController : ControllerBase
+    public sealed class SubscribedChatsController : ControllerBase
     {
         [HttpGet]
         public async Task<IActionResult> GetAll([FromServices] IMediator mediator)
