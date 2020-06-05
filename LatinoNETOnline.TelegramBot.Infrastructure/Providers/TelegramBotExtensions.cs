@@ -2,7 +2,7 @@
 using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot;
 using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.CallbackQueries;
 using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands;
-
+using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.UpdateHandlers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +18,8 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.Providers
             configuration.GetSection(nameof(LatinoNetOnlineTelegramBot)).Bind(botOptions);
 
             services.AddTelegramBot(botOptions)
+                .AddUpdateHandler<AddedMeToGroupHandler>()
+                .AddUpdateHandler<DeletedMeToGroup>()
                 .AddUpdateHandler<NextEventCommand>()
                 .AddUpdateHandler<SubscribeCommand>()
                 .AddUpdateHandler<UnsubscribeCommand>()
