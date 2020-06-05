@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-using LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.GetSubscribedUsers;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.GetSubscribedChats;
 
 using MediatR;
 
@@ -18,7 +18,7 @@ namespace LatinoNETOnline.TelegramBot.Web.UseCases.V1.GetSubscribedUsers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromServices] IMediator mediator)
         {
-            GetSubscribedUsersRequest request = new GetSubscribedUsersRequest();
+            GetSubscribedChatsRequest request = new GetSubscribedChatsRequest();
             var response = await mediator.Send(request);
 
             return Ok(response);

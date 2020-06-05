@@ -2,9 +2,9 @@
 
 using LatinoNETOnline.TelegramBot.Domain;
 
-namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.GetSubscribedUsers
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.GetSubscribedChats
 {
-    public class GetSubscribedUsersResponse
+    public class GetSubscribedChatsResponse
     {
         public IEnumerable<SubscribedUser> SubscribedUsers { get; set; }
     }
