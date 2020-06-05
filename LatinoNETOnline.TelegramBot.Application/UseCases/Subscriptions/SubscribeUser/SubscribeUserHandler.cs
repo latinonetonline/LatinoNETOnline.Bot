@@ -8,7 +8,7 @@ using LatinoNETOnline.TelegramBot.Domain;
 
 using MediatR;
 
-namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Subscription.SubscribeUser
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.SubscribeUser
 {
     public class SubscribeUserHandler : AsyncRequestHandler<SubscribeUserRequest>
     {
