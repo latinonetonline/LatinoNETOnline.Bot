@@ -16,7 +16,7 @@ namespace LatinoNETOnline.TelegramBot.Web.UseCases.V1.UnsubscribeChat
     public class SubscribedChatsController : ControllerBase
     {
         [HttpDelete("{chatId}")]
-        public async Task<IActionResult> Delete([FromServices] IMediator mediator, [FromRoute] int chatId)
+        public async Task<IActionResult> Delete([FromServices] IMediator mediator, [FromRoute] long chatId)
         {
             UnsubscribeChatRequest unsubscribeChatRequest = new UnsubscribeChatRequest(chatId);
             await mediator.Send(unsubscribeChatRequest);
