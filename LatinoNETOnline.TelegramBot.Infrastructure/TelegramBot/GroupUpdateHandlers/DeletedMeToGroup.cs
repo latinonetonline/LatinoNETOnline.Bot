@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using LatinoNETOnline.TelegramBot.Application.Repositories;
+﻿using System.Threading.Tasks;
+
 using LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.UnsubscribeChat;
-using LatinoNETOnline.TelegramBot.Domain;
+
 using MediatR;
+
 using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
 

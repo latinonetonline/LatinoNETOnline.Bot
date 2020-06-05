@@ -1,9 +1,7 @@
-﻿using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 
 using LatinoNETOnline.TelegramBot.Application.Repositories;
-using LatinoNETOnline.TelegramBot.Application.Services;
 using LatinoNETOnline.TelegramBot.Domain;
 
 using MediatR;

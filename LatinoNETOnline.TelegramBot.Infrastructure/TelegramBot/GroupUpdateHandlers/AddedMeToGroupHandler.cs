@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 
-using LatinoNETOnline.TelegramBot.Application.Repositories;
 using LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.SubscribeChat;
-using LatinoNETOnline.TelegramBot.Infrastructure.DataAccess.Entities;
+
 using MediatR;
+
 using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
 

@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
 using LatinoNETOnline.TelegramBot.Application.Enums;
 using LatinoNETOnline.TelegramBot.Application.Services;
 
@@ -18,7 +19,7 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Messages.SendNextEven
 
         protected override Task Handle(SendNextEventTextRequest request, CancellationToken cancellationToken)
         {
-            var @event = request.Event; 
+            var @event = request.Event;
 
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("🚨 *Proximo Evento* 🚨");
