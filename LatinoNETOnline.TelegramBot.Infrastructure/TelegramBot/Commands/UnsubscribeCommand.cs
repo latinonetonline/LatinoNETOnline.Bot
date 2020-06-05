@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Subscription.UnsubscribeUser;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.UnsubscribeUser;
 
 using MediatR;
 

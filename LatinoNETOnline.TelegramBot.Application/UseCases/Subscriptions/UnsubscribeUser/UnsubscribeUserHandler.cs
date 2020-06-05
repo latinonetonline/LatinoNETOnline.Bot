@@ -8,7 +8,7 @@ using LatinoNETOnline.TelegramBot.Domain;
 
 using MediatR;
 
-namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Subscription.UnsubscribeUser
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.UnsubscribeUser
 {
     public class UnsubscribeUserHandler : AsyncRequestHandler<UnsubscribeUserRequest>
     {

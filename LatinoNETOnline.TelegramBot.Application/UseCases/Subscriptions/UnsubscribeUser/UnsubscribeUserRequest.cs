@@ -1,7 +1,7 @@
 ﻿
 using MediatR;
 
-namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Subscription.UnsubscribeUser
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.UnsubscribeUser
 {
     public class UnsubscribeUserRequest : IRequest
     {
