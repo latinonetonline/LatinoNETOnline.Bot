@@ -1,7 +1,7 @@
 ﻿
 using MediatR;
 
-namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEvent
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Messages.SendNextEvent
 {
     public class SendNextEventRequest : IRequest
     {

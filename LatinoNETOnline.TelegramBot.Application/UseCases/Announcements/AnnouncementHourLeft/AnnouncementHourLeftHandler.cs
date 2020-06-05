@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using LatinoNETOnline.TelegramBot.Application.Repositories;
 using LatinoNETOnline.TelegramBot.Application.Services;
-using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEventImage;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Messages.SendNextEventImage;
 
 using MediatR;
 

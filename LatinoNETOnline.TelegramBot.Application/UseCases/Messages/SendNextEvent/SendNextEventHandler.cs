@@ -3,12 +3,12 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using LatinoNETOnline.TelegramBot.Application.Services;
-using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEventImage;
-using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEventText;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Messages.SendNextEventImage;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Messages.SendNextEventText;
 
 using MediatR;
 
-namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEvent
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Messages.SendNextEvent
 {
     public class SendNextEventHandler : AsyncRequestHandler<SendNextEventRequest>
     {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-using LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEvent;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Messages.SendNextEvent;
 
 using MediatR;
 

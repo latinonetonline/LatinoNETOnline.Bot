@@ -6,7 +6,7 @@ using LatinoNETOnline.TelegramBot.Application.Services;
 
 using MediatR;
 
-namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEventText
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Messages.SendNextEventText
 {
     public class SendNextEventTextHandler : AsyncRequestHandler<SendNextEventTextRequest>
     {

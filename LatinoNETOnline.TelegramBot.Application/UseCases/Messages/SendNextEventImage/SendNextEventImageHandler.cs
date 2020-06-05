@@ -5,7 +5,7 @@ using LatinoNETOnline.TelegramBot.Application.Services;
 
 using MediatR;
 
-namespace LatinoNETOnline.TelegramBot.Application.UseCases.Bots.Messages.SendNextEventImage
+namespace LatinoNETOnline.TelegramBot.Application.UseCases.Messages.SendNextEventImage
 {
     public class SendNextEventImageHandler : IRequestHandler<SendNextEventImageRequest, SendNextEventImageResponse>
     {
