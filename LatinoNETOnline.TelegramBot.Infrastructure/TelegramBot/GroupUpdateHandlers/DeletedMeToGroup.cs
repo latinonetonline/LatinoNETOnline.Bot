@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using LatinoNETOnline.TelegramBot.Application.Repositories;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.UnsubscribeChat;
 using LatinoNETOnline.TelegramBot.Domain;
+using MediatR;
 using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
 
-namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.UpdateHandlers
+namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.GroupUpdateHandlers
 {
     public class DeletedMeToGroup : IUpdateHandler
     {
-        private readonly ISubscribedUsersRepository _subscribedUsersRepository;
+        private readonly IMediator _mediator;
 
-        public DeletedMeToGroup(ISubscribedUsersRepository subscribedUsersRepository)
+        public DeletedMeToGroup(IMediator mediator)
         {
-            _subscribedUsersRepository = subscribedUsersRepository;
+            _mediator = mediator;
         }
 
         public bool CanHandleUpdate(IBot bot, Update update)
@@ -25,11 +27,8 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.UpdateHandlers
 
         public async Task<UpdateHandlingResult> HandleUpdateAsync(IBot bot, Update update)
         {
-            SubscribedUser subscribedUser = await _subscribedUsersRepository.GetById(update.Message.Chat.Id);
-            if (subscribedUser != null)
-            {
-                await _subscribedUsersRepository.Delete(subscribedUser);
-            }
+            UnsubscribeChatRequest unsubscribeChatRequest = new UnsubscribeChatRequest(update.Message.Chat.Id);
+            await _mediator.Send(unsubscribeChatRequest);
 
             return UpdateHandlingResult.Continue;
         }

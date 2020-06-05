@@ -2,20 +2,21 @@
 using System.Threading.Tasks;
 
 using LatinoNETOnline.TelegramBot.Application.Repositories;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.SubscribeChat;
 using LatinoNETOnline.TelegramBot.Infrastructure.DataAccess.Entities;
-
+using MediatR;
 using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
 
-namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.UpdateHandlers
+namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.GroupUpdateHandlers
 {
     public class AddedMeToGroupHandler : IUpdateHandler
     {
-        private readonly ISubscribedUsersRepository _subscribedUsersRepository;
+        private readonly IMediator _mediator;
 
-        public AddedMeToGroupHandler(ISubscribedUsersRepository subscribedUsersRepository)
+        public AddedMeToGroupHandler(IMediator mediator)
         {
-            _subscribedUsersRepository = subscribedUsersRepository;
+            _mediator = mediator;
         }
 
         public bool CanHandleUpdate(IBot bot, Update update)
@@ -25,13 +26,9 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.UpdateHandlers
 
         public async Task<UpdateHandlingResult> HandleUpdateAsync(IBot bot, Update update)
         {
-            SubscribedUser subscribedUser = new SubscribedUser
-            {
-                UserId = update.Message.Chat.Id
-            };
+            SubscribeChatRequest subscribeChatRequest = new SubscribeChatRequest(update.Message.Chat.Id);
+            await _mediator.Send(subscribeChatRequest);
 
-
-            await _subscribedUsersRepository.Insert(subscribedUser);
             return UpdateHandlingResult.Continue;
         }
     }

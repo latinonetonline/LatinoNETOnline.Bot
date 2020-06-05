@@ -2,7 +2,7 @@
 using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot;
 using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.CallbackQueries;
 using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.Commands;
-using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.UpdateHandlers;
+using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.GroupUpdateHandlers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
