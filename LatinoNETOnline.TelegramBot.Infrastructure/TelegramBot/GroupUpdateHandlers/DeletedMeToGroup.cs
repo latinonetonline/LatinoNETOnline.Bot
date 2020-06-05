@@ -20,7 +20,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.GroupUpdateHand
 
         public bool CanHandleUpdate(IBot bot, Update update)
         {
-            return update.Message.LeftChatMember?.Username == bot.UserName;
+            return update?.Message?.LeftChatMember?.Username == bot.UserName;
         }
 
         public async Task<UpdateHandlingResult> HandleUpdateAsync(IBot bot, Update update)

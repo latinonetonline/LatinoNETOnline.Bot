@@ -11,7 +11,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.CallbackQueries
     {
         public bool CanHandleUpdate(IBot bot, Update update)
         {
-            return update.Type == UpdateType.CallbackQueryUpdate && update.CallbackQuery.Data == CallbackQueryConst.ABOUTUS;
+            return update.Type == UpdateType.CallbackQueryUpdate && update?.CallbackQuery?.Data == CallbackQueryConst.ABOUTUS;
         }
 
         public async Task<UpdateHandlingResult> HandleUpdateAsync(IBot bot, Update update)

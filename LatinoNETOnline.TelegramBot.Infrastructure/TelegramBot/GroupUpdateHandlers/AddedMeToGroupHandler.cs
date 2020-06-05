@@ -21,7 +21,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.GroupUpdateHand
 
         public bool CanHandleUpdate(IBot bot, Update update)
         {
-            return update.Message.NewChatMembers?.Any(x => x.Username == bot.UserName) ?? false;
+            return update?.Message?.NewChatMembers?.Any(x => x.Username == bot.UserName) ?? false;
         }
 
         public async Task<UpdateHandlingResult> HandleUpdateAsync(IBot bot, Update update)

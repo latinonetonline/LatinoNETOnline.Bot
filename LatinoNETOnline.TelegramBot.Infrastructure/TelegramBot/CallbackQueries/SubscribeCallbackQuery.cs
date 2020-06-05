@@ -6,6 +6,7 @@ using MediatR;
 
 using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.CallbackQueries
 {
@@ -20,7 +21,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.CallbackQueries
 
         public bool CanHandleUpdate(IBot bot, Update update)
         {
-            return update.Type == Telegram.Bot.Types.Enums.UpdateType.CallbackQueryUpdate && update.CallbackQuery.Data == CallbackQueryConst.SUBSCRIBE;
+            return update.Type == UpdateType.CallbackQueryUpdate && update?.CallbackQuery?.Data == CallbackQueryConst.SUBSCRIBE;
         }
 
         public async Task<UpdateHandlingResult> HandleUpdateAsync(IBot bot, Update update)

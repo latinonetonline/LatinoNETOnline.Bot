@@ -11,7 +11,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.CallbackQueries
     {
         public bool CanHandleUpdate(IBot bot, Update update)
         {
-            return update.Type == Telegram.Bot.Types.Enums.UpdateType.CallbackQueryUpdate && update.CallbackQuery.Data == CallbackQueryConst.SOCIALNETWORKS;
+            return update.Type == Telegram.Bot.Types.Enums.UpdateType.CallbackQueryUpdate && update?.CallbackQuery?.Data == CallbackQueryConst.SOCIALNETWORKS;
         }
 
         public async Task<UpdateHandlingResult> HandleUpdateAsync(IBot bot, Update update)
