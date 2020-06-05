@@ -6,6 +6,6 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.GetSubs
 {
     public class GetSubscribedChatsResponse
     {
-        public IEnumerable<SubscribedChat> SubscribedUsers { get; set; }
+        public IEnumerable<SubscribedChat> SubscribedChats { get; set; }
     }
 }

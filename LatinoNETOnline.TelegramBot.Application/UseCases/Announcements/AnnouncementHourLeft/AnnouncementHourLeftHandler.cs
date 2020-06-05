@@ -14,14 +14,14 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.Announc
     public class AnnouncementHourLeftHandler : AsyncRequestHandler<AnnouncementHourLeftRequest>
     {
         private readonly IMediator _mediator;
-        private readonly ISubscribedChatRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedChatRepository;
         private readonly IEventService _eventService;
         private readonly IBotMessageService _botMessageService;
 
-        public AnnouncementHourLeftHandler(IMediator mediator, ISubscribedChatRepository subscribedUsersRepository, IEventService eventService, IBotMessageService botMessageService)
+        public AnnouncementHourLeftHandler(IMediator mediator, ISubscribedChatRepository subscribedChatRepository, IEventService eventService, IBotMessageService botMessageService)
         {
             _mediator = mediator;
-            _subscribedUsersRepository = subscribedUsersRepository;
+            _subscribedChatRepository = subscribedChatRepository;
             _eventService = eventService;
             _botMessageService = botMessageService;
         }
@@ -32,7 +32,7 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.Announc
 
             if (@event != null && @event.Date > DateTime.Now.ToUniversalTime())
             {
-                var users = await _subscribedUsersRepository.GetAll();
+                var chats = await _subscribedChatRepository.GetAll();
 
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.AppendLine("💥En 1 Hora Webinar💥");
@@ -41,12 +41,12 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.Announc
                 stringBuilder.AppendLine();
                 stringBuilder.AppendLine("https://latinonet.online/links#registro");
 
-                foreach (var user in users)
+                foreach (var chat in chats)
                 {
-                    SendNextEventImageRequest sendEventImageRequest = new SendNextEventImageRequest(user.ChatId, new Uri(@event.ImageUrl), null);
+                    SendNextEventImageRequest sendEventImageRequest = new SendNextEventImageRequest(chat.ChatId, new Uri(@event.ImageUrl), null);
                     var sendEventImageResponse = await _mediator.Send(sendEventImageRequest);
 
-                    await _botMessageService.SendText(stringBuilder.ToString(), user.ChatId, sendEventImageResponse.MessageId);
+                    await _botMessageService.SendText(stringBuilder.ToString(), chat.ChatId, sendEventImageResponse.MessageId);
                 }
             }
         }

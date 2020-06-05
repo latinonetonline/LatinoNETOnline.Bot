@@ -9,20 +9,20 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.GetSubs
 {
     public class GetSubscribedChatsHandler : IRequestHandler<GetSubscribedChatsRequest, GetSubscribedChatsResponse>
     {
-        private readonly ISubscribedChatRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedChatRepository;
 
-        public GetSubscribedChatsHandler(ISubscribedChatRepository subscribedUsersRepository)
+        public GetSubscribedChatsHandler(ISubscribedChatRepository subscribedChatRepository)
         {
-            _subscribedUsersRepository = subscribedUsersRepository;
+            _subscribedChatRepository = subscribedChatRepository;
         }
 
         public async Task<GetSubscribedChatsResponse> Handle(GetSubscribedChatsRequest request, CancellationToken cancellationToken)
         {
-            var users = await _subscribedUsersRepository.GetAll();
+            var chats = await _subscribedChatRepository.GetAll();
 
             return new GetSubscribedChatsResponse
             {
-                SubscribedUsers = users
+                SubscribedChats = chats
             };
         }
     }

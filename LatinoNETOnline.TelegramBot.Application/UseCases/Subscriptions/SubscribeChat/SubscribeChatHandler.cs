@@ -12,23 +12,23 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.Subscri
 {
     public class SubscribeChatHandler : AsyncRequestHandler<SubscribeChatRequest>
     {
-        private readonly ISubscribedChatRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedChatRepository;
 
-        public SubscribeChatHandler(ISubscribedChatRepository subscribedUsersRepository)
+        public SubscribeChatHandler(ISubscribedChatRepository subscribedChatRepository)
         {
-            _subscribedUsersRepository = subscribedUsersRepository;
+            _subscribedChatRepository = subscribedChatRepository;
         }
 
         protected override async Task Handle(SubscribeChatRequest request, CancellationToken cancellationToken)
         {
-            var user = await _subscribedUsersRepository.GetById(request.ChatId);
+            var chat = await _subscribedChatRepository.GetById(request.ChatId);
 
-            if (user is null)
+            if (chat is null)
             {
-                SubscribedChat subscribedUser = await _subscribedUsersRepository.OpenSubscribedUser();
-                subscribedUser.ChatId = request.ChatId;
+                SubscribedChat subscribedChat = await _subscribedChatRepository.OpenSubscribedChat();
+                subscribedChat.ChatId = request.ChatId;
 
-                await _subscribedUsersRepository.Insert(subscribedUser);
+                await _subscribedChatRepository.Insert(subscribedChat);
             }
         }
     }

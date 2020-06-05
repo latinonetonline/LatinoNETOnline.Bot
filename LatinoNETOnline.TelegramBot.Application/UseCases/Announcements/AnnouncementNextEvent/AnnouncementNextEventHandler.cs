@@ -14,13 +14,13 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.Announc
     public class AnnouncementNextEventHandler : AsyncRequestHandler<AnnouncementNextEventRequest>
     {
         private readonly IMediator _mediator;
-        private readonly ISubscribedChatRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedChatRepository;
         private readonly IEventService _eventService;
 
-        public AnnouncementNextEventHandler(IMediator mediator, ISubscribedChatRepository subscribedUsersRepository, IEventService eventService)
+        public AnnouncementNextEventHandler(IMediator mediator, ISubscribedChatRepository subscribedChatRepository, IEventService eventService)
         {
             _mediator = mediator;
-            _subscribedUsersRepository = subscribedUsersRepository;
+            _subscribedChatRepository = subscribedChatRepository;
             _eventService = eventService;
         }
 
@@ -30,15 +30,15 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.Announc
 
             if (@event != null && @event.Date > DateTime.Now.ToUniversalTime())
             {
-                var users = await _subscribedUsersRepository.GetAll();
+                var chats = await _subscribedChatRepository.GetAll();
 
-                foreach (var user in users)
+                foreach (var chat in chats)
                 {
-                    var nextEventImageRequest = new SendNextEventImageRequest(user.ChatId, new Uri(@event.ImageUrl), null);
+                    var nextEventImageRequest = new SendNextEventImageRequest(chat.ChatId, new Uri(@event.ImageUrl), null);
 
                     var nextEventImageResponse = await _mediator.Send(nextEventImageRequest);
 
-                    var nextEventTextRequest = new SendNextEventTextRequest(user.ChatId, nextEventImageResponse.MessageId, @event);
+                    var nextEventTextRequest = new SendNextEventTextRequest(chat.ChatId, nextEventImageResponse.MessageId, @event);
 
                     await _mediator.Send(nextEventTextRequest);
                 }

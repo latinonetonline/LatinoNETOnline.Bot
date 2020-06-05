@@ -13,19 +13,19 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.Unsubsc
     public class UnsubscribeUserHandler : AsyncRequestHandler<UnsubscribeUserRequest>
     {
         private readonly IBotMessageService _botMessageService;
-        private readonly ISubscribedChatRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedChatRepository;
 
-        public UnsubscribeUserHandler(IBotMessageService botMessageService, ISubscribedChatRepository subscribedUsersRepository)
+        public UnsubscribeUserHandler(IBotMessageService botMessageService, ISubscribedChatRepository subscribedChatRepository)
         {
             _botMessageService = botMessageService;
-            _subscribedUsersRepository = subscribedUsersRepository;
+            _subscribedChatRepository = subscribedChatRepository;
         }
 
         protected override async Task Handle(UnsubscribeUserRequest request, CancellationToken cancellationToken)
         {
-            var user = await _subscribedUsersRepository.GetById(request.UserId);
+            var chat = await _subscribedChatRepository.GetById(request.UserId);
 
-            if (user is null)
+            if (chat is null)
             {
                 await _botMessageService.SendText("No te encuentras suscripto",
                     request.UserId,
@@ -33,10 +33,10 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.Unsubsc
             }
             else
             {
-                SubscribedChat subscribedUser = await _subscribedUsersRepository.OpenSubscribedUser();
-                subscribedUser.ChatId = request.UserId;
+                SubscribedChat subscribedChat = await _subscribedChatRepository.OpenSubscribedChat();
+                subscribedChat.ChatId = request.UserId;
 
-                await _subscribedUsersRepository.Delete(subscribedUser);
+                await _subscribedChatRepository.Delete(subscribedChat);
 
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.AppendLine("Es una pena que te vayas 😭");

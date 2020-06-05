@@ -22,9 +22,9 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.DataAccess.Repositories
             _db = new NpgsqlConnection(configuration.GetConnectionString("Default"));
             SqlMapperExtensions.TableNameMapper = (type) => $"\"{type.Name}s\"";
         }
-        public Task Delete(SubscribedChat subscribedUser)
+        public Task Delete(SubscribedChat subscribedChat)
         {
-            return _db.DeleteAsync((Entities.SubscribedChat)subscribedUser);
+            return _db.DeleteAsync((Entities.SubscribedChat)subscribedChat);
         }
 
         public async Task<IEnumerable<SubscribedChat>> GetAll()
@@ -32,17 +32,17 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.DataAccess.Repositories
             return await _db.GetAllAsync<Entities.SubscribedChat>();
         }
 
-        public async Task<SubscribedChat> GetById(long userId)
+        public async Task<SubscribedChat> GetById(long chatId)
         {
-            return await _db.QuerySingleOrDefaultAsync<Entities.SubscribedChat>($"SELECT * FROM \"public\".\"{nameof(SubscribedChat)}s\" WHERE \"{nameof(SubscribedChat.ChatId)}\" = '{userId}'");
+            return await _db.QuerySingleOrDefaultAsync<Entities.SubscribedChat>($"SELECT * FROM \"public\".\"{nameof(SubscribedChat)}s\" WHERE \"{nameof(SubscribedChat.ChatId)}\" = '{chatId}'");
         }
 
-        public Task Insert(SubscribedChat subscribedUser)
+        public Task Insert(SubscribedChat subscribedChat)
         {
-            return _db.InsertAsync(subscribedUser);
+            return _db.InsertAsync(subscribedChat);
         }
 
-        public async Task<SubscribedChat> OpenSubscribedUser()
+        public async Task<SubscribedChat> OpenSubscribedChat()
         {
             return await Task.Factory.StartNew(() => new Entities.SubscribedChat());
         }

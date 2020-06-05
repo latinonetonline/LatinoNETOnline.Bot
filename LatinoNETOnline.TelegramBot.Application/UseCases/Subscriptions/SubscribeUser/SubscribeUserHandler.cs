@@ -13,25 +13,25 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.Subscri
     public class SubscribeUserHandler : AsyncRequestHandler<SubscribeUserRequest>
     {
         private readonly IBotMessageService _botMessageService;
-        private readonly ISubscribedChatRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedChatRepository;
 
-        public SubscribeUserHandler(IBotMessageService botMessageService, ISubscribedChatRepository subscribedUsersRepository)
+        public SubscribeUserHandler(IBotMessageService botMessageService, ISubscribedChatRepository subscribedChatRepository)
         {
             _botMessageService = botMessageService;
-            _subscribedUsersRepository = subscribedUsersRepository;
+            _subscribedChatRepository = subscribedChatRepository;
         }
 
         protected override async Task Handle(SubscribeUserRequest request, CancellationToken cancellationToken)
         {
-            var user = await _subscribedUsersRepository.GetById(request.UserId);
+            var chat = await _subscribedChatRepository.GetById(request.UserId);
 
-            if (user is null)
+            if (chat is null)
             {
-                SubscribedChat subscribedUser = await _subscribedUsersRepository.OpenSubscribedUser();
-                subscribedUser.ChatId = request.UserId;
+                SubscribedChat subscribedChat = await _subscribedChatRepository.OpenSubscribedChat();
+                subscribedChat.ChatId = request.UserId;
 
 
-                await _subscribedUsersRepository.Insert(subscribedUser);
+                await _subscribedChatRepository.Insert(subscribedChat);
 
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.AppendLine($"🎉 *Bienvenido/a* {request.UserFirstName} 🎉");
