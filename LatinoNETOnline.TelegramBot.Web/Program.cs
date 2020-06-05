@@ -2,7 +2,7 @@
 using System;
 
 using FluentMigrator.Runner;
-
+using LatinoNETOnline.TelegramBot.Infrastructure.HostedServices;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,6 +37,10 @@ namespace LatinoNETOnline.TelegramBot.Web
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                })
+                .ConfigureServices(services =>
+                {
+                    services.AddHostedService<BotUpdateGetterHostedService>();
                 });
 
 
