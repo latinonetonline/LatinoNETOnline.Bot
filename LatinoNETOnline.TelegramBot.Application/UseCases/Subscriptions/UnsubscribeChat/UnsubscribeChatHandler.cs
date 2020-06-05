@@ -12,9 +12,9 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.Unsubsc
 {
     public class UnsubscribeChatHandler : AsyncRequestHandler<UnsubscribeChatRequest>
     {
-        private readonly ISubscribedUsersRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedUsersRepository;
 
-        public UnsubscribeChatHandler(ISubscribedUsersRepository subscribedUsersRepository)
+        public UnsubscribeChatHandler(ISubscribedChatRepository subscribedUsersRepository)
         {
             _subscribedUsersRepository = subscribedUsersRepository;
         }
@@ -25,8 +25,8 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.Unsubsc
 
             if (user != null)
             {
-                SubscribedUser subscribedUser = await _subscribedUsersRepository.OpenSubscribedUser();
-                subscribedUser.UserId = request.ChatId;
+                SubscribedChat subscribedUser = await _subscribedUsersRepository.OpenSubscribedUser();
+                subscribedUser.ChatId = request.ChatId;
 
                 await _subscribedUsersRepository.Delete(subscribedUser);
             }

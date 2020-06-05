@@ -16,7 +16,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.Providers
             services.AddTransient<IEventService, EventService>();
             services.AddTransient<IBotMessageService, BotMessageService>();
 
-            services.AddTransient<ISubscribedUsersRepository, SubscribedUsersRepository>();
+            services.AddTransient<ISubscribedChatRepository, SubscribedChatRepository>();
 
             return services;
         }

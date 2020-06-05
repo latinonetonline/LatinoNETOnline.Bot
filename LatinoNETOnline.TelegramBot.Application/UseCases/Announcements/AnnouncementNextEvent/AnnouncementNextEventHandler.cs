@@ -14,10 +14,10 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.Announc
     public class AnnouncementNextEventHandler : AsyncRequestHandler<AnnouncementNextEventRequest>
     {
         private readonly IMediator _mediator;
-        private readonly ISubscribedUsersRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedUsersRepository;
         private readonly IEventService _eventService;
 
-        public AnnouncementNextEventHandler(IMediator mediator, ISubscribedUsersRepository subscribedUsersRepository, IEventService eventService)
+        public AnnouncementNextEventHandler(IMediator mediator, ISubscribedChatRepository subscribedUsersRepository, IEventService eventService)
         {
             _mediator = mediator;
             _subscribedUsersRepository = subscribedUsersRepository;
@@ -34,11 +34,11 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Announcements.Announc
 
                 foreach (var user in users)
                 {
-                    var nextEventImageRequest = new SendNextEventImageRequest(user.UserId, new Uri(@event.ImageUrl), null);
+                    var nextEventImageRequest = new SendNextEventImageRequest(user.ChatId, new Uri(@event.ImageUrl), null);
 
                     var nextEventImageResponse = await _mediator.Send(nextEventImageRequest);
 
-                    var nextEventTextRequest = new SendNextEventTextRequest(user.UserId, nextEventImageResponse.MessageId, @event);
+                    var nextEventTextRequest = new SendNextEventTextRequest(user.ChatId, nextEventImageResponse.MessageId, @event);
 
                     await _mediator.Send(nextEventTextRequest);
                 }

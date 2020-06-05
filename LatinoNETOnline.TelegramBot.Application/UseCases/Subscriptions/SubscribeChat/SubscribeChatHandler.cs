@@ -12,9 +12,9 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.Subscri
 {
     public class SubscribeChatHandler : AsyncRequestHandler<SubscribeChatRequest>
     {
-        private readonly ISubscribedUsersRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedUsersRepository;
 
-        public SubscribeChatHandler(ISubscribedUsersRepository subscribedUsersRepository)
+        public SubscribeChatHandler(ISubscribedChatRepository subscribedUsersRepository)
         {
             _subscribedUsersRepository = subscribedUsersRepository;
         }
@@ -25,8 +25,8 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.Subscri
 
             if (user is null)
             {
-                SubscribedUser subscribedUser = await _subscribedUsersRepository.OpenSubscribedUser();
-                subscribedUser.UserId = request.ChatId;
+                SubscribedChat subscribedUser = await _subscribedUsersRepository.OpenSubscribedUser();
+                subscribedUser.ChatId = request.ChatId;
 
                 await _subscribedUsersRepository.Insert(subscribedUser);
             }

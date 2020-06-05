@@ -3,10 +3,10 @@ using Dapper.Contrib.Extensions;
 
 namespace LatinoNETOnline.TelegramBot.Infrastructure.DataAccess.Entities
 {
-    [Table("SubscribedUsers")]
-    public class SubscribedUser : Domain.SubscribedUser
+    [Table("SubscribedChats")]
+    public class SubscribedChat : Domain.SubscribedChat
     {
         [ExplicitKey]
-        public override long UserId { get; set; }
+        public override long ChatId { get; set; }
     }
 }

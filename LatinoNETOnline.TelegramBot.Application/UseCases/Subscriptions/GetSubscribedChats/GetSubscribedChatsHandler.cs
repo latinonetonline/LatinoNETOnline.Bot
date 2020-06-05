@@ -9,9 +9,9 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.GetSubs
 {
     public class GetSubscribedChatsHandler : IRequestHandler<GetSubscribedChatsRequest, GetSubscribedChatsResponse>
     {
-        private readonly ISubscribedUsersRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedUsersRepository;
 
-        public GetSubscribedChatsHandler(ISubscribedUsersRepository subscribedUsersRepository)
+        public GetSubscribedChatsHandler(ISubscribedChatRepository subscribedUsersRepository)
         {
             _subscribedUsersRepository = subscribedUsersRepository;
         }

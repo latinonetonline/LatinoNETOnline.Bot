@@ -13,9 +13,9 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.Subscri
     public class SubscribeUserHandler : AsyncRequestHandler<SubscribeUserRequest>
     {
         private readonly IBotMessageService _botMessageService;
-        private readonly ISubscribedUsersRepository _subscribedUsersRepository;
+        private readonly ISubscribedChatRepository _subscribedUsersRepository;
 
-        public SubscribeUserHandler(IBotMessageService botMessageService, ISubscribedUsersRepository subscribedUsersRepository)
+        public SubscribeUserHandler(IBotMessageService botMessageService, ISubscribedChatRepository subscribedUsersRepository)
         {
             _botMessageService = botMessageService;
             _subscribedUsersRepository = subscribedUsersRepository;
@@ -27,8 +27,8 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.Subscri
 
             if (user is null)
             {
-                SubscribedUser subscribedUser = await _subscribedUsersRepository.OpenSubscribedUser();
-                subscribedUser.UserId = request.UserId;
+                SubscribedChat subscribedUser = await _subscribedUsersRepository.OpenSubscribedUser();
+                subscribedUser.ChatId = request.UserId;
 
 
                 await _subscribedUsersRepository.Insert(subscribedUser);
