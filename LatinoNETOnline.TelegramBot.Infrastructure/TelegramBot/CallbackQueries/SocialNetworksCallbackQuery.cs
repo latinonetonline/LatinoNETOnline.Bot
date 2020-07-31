@@ -26,7 +26,7 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot.CallbackQueries
                     },
                     new []
                     {
-                        InlineKeyboardButton.WithUrl("Whatsapp 📱", "https://latinonet.online/links#wsp"),
+                        InlineKeyboardButton.WithUrl("Discord 📱", "https://latinonet.online/links#discord"),
                         InlineKeyboardButton.WithUrl("Telegram ✈", "https://latinonet.online/links#telegram")
                     }
                 });

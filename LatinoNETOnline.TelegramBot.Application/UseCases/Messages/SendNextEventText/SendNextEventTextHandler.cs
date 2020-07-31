@@ -22,7 +22,7 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Messages.SendNextEven
             var @event = request.Event;
 
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine("🚨 *Proximo Evento* 🚨");
+            stringBuilder.AppendLine("🚨 *Próximo Evento* 🚨");
             stringBuilder.AppendLine();
             stringBuilder.AppendLine($"🕔Cuando: {(DayOfWeekSpanish)@event.Date.DayOfWeek} {@event.Date.Day} de {(Month)@event.Date.Month} a las {@event.Date:HH:mm} UTC");
             stringBuilder.AppendLine();
