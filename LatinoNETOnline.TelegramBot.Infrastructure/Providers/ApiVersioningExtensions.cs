@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,7 +16,6 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.Providers
                      options.ReportApiVersions = true;
                      options.AssumeDefaultVersionWhenUnspecified = true;
                      options.DefaultApiVersion = new ApiVersion(1, 0);
-                     options.ApiVersionReader = new MediaTypeApiVersionReader("v");
                  })
             .AddVersionedApiExplorer(
                 options =>
