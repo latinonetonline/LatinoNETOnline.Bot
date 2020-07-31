@@ -1,4 +1,7 @@
-﻿using System.Threading;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using LatinoNETOnline.TelegramBot.Application.Repositories;
 using LatinoNETOnline.TelegramBot.Application.Services;
@@ -19,20 +22,36 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.SendMessage
 
         protected override async Task Handle(SendMessageRequest request, CancellationToken cancellationToken)
         {
-            var chats = await _subscribedChatRepository.GetAll();
+            if (request.Chats.Any())
+            {
+                foreach (var chatId in request.Chats)
+                {
+                    await SendMessageToChat(chatId);
+                }
+            }
+            else
+            {
+                var chats = await _subscribedChatRepository.GetAll();
 
-            foreach (var chat in chats)
+                foreach (var chat in chats)
+                {
+                    await SendMessageToChat(chat.ChatId);
+                }
+            }
+
+
+            async Task SendMessageToChat(long chatId)
             {
                 int? messageId = null;
 
                 if (request.ImageLink != null)
                 {
-                    messageId = await _botMessageService.SendImage(request.ImageLink, chat.ChatId, null);
+                    messageId = await _botMessageService.SendImage(request.ImageLink, chatId, null);
                 }
 
                 if (!string.IsNullOrWhiteSpace(request.Message))
                 {
-                    await _botMessageService.SendText(request.Message, chat.ChatId, messageId);
+                    await _botMessageService.SendText(request.Message, chatId, messageId);
                 }
             }
         }

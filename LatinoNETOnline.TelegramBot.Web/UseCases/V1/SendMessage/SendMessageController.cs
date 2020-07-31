@@ -17,8 +17,10 @@ namespace LatinoNETOnline.TelegramBot.Web.UseCases.V1.SendMessage
         [HttpPost]
         public async Task<IActionResult> SendMessage([FromServices] IMediator mediator, [FromBody] SendMessageBodyRequest bodyRequest)
         {
-            Uri imageUri = bodyRequest.ImageLink is null ? null : new Uri(bodyRequest.ImageLink);
-            SendMessageRequest request = new SendMessageRequest(bodyRequest.Message, imageUri);
+            Uri imageUri = string.IsNullOrWhiteSpace(bodyRequest.ImageLink) ? null : new Uri(bodyRequest.ImageLink);
+
+            SendMessageRequest request = new SendMessageRequest(bodyRequest.Message, imageUri, bodyRequest.Chats);
+
             var response = await mediator.Send(request);
 
             return Ok(response);
