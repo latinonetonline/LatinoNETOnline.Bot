@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
-
-using LatinoNETOnline.TelegramBot.Application.UseCases.Subscriptions.GetSubscribedChats;
+using LatinoNETOnline.TelegramBot.Application.UseCases.Chats.GetSubscribedChatsInfo;
 
 using MediatR;
 
@@ -13,12 +12,12 @@ namespace LatinoNETOnline.TelegramBot.Web.UseCases.V1.GetSubscribedChats
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    public sealed class SubscribedChatsController : ControllerBase
+    public sealed class GetSubscribedChatsInfoController : ControllerBase
     {
         [HttpGet]
         public async Task<IActionResult> Get([FromServices] IMediator mediator)
         {
-            GetSubscribedChatsRequest request = new GetSubscribedChatsRequest();
+            GetSubscribedChatsInfoRequest request = new GetSubscribedChatsInfoRequest();
             var response = await mediator.Send(request);
 
             return Ok(response);

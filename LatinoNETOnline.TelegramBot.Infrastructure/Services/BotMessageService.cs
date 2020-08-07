@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 
 using LatinoNETOnline.TelegramBot.Application.Services;
+using LatinoNETOnline.TelegramBot.Domain.Dto;
 using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot;
 
 using Telegram.Bot.Framework;
@@ -38,6 +39,20 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.Services
                  replyToMessageId: replyToMessageId.GetValueOrDefault());
 
             return msg.MessageId;
+        }
+
+        public async Task<ChatDto> GetChat(long chatId)
+        {
+            Chat chat = await _bot.Client.GetChatAsync(new ChatId(chatId));
+
+            string title = chat.Type == ChatType.Private ? $"{chat.FirstName} {chat.LastName}" : chat.Title;
+
+            return new ChatDto
+            {
+                ChatId = chat.Id,
+                Title = title,
+                IsGroup = chat.Type != ChatType.Private
+            };
         }
     }
 }
