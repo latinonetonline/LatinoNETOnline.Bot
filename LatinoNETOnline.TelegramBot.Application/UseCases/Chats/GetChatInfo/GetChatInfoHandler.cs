@@ -18,12 +18,20 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Chats.GetChatInfo
         {
             var chat = await _botMessageService.GetChat(request.ChatId);
 
-            return new GetChatInfoResult
+            if (chat is null)
             {
-                ChatId = chat.ChatId,
-                Title = chat.Title,
-                IsGroup = chat.IsGroup
-            };
+                return new GetChatInfoResult();
+            }
+            else
+            {
+                return new GetChatInfoResult
+                {
+                    Exist = true,
+                    ChatId = chat.ChatId,
+                    Title = chat.Title,
+                    IsGroup = chat.IsGroup
+                };
+            }
         }
     }
 }

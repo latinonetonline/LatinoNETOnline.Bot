@@ -29,7 +29,12 @@ namespace LatinoNETOnline.TelegramBot.Application.UseCases.Chats.GetSubscribedCh
             foreach (var subscribedChat in subscribedChats)
             {
                 var chatTask = _botMessageService.GetChat(subscribedChat.ChatId);
-                await chatTask.ContinueWith((chat) => chatDtos.Add(chat.Result));
+                await chatTask.ContinueWith((chat) =>
+                {
+                    if (chat.Result != null)
+                        chatDtos.Add(chat.Result);
+                    
+                });
 
                 tasks.Add(chatTask);
             }

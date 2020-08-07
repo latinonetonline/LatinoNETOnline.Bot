@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using LatinoNETOnline.TelegramBot.Application.Services;
 using LatinoNETOnline.TelegramBot.Domain.Dto;
 using LatinoNETOnline.TelegramBot.Infrastructure.TelegramBot;
-
+using Telegram.Bot.Exceptions;
 using Telegram.Bot.Framework;
 using Telegram.Bot.Framework.Abstractions;
 using Telegram.Bot.Types;
@@ -43,16 +43,23 @@ namespace LatinoNETOnline.TelegramBot.Infrastructure.Services
 
         public async Task<ChatDto> GetChat(long chatId)
         {
-            Chat chat = await _bot.Client.GetChatAsync(new ChatId(chatId));
-
-            string title = chat.Type == ChatType.Private ? $"{chat.FirstName} {chat.LastName}" : chat.Title;
-
-            return new ChatDto
+            try
             {
-                ChatId = chat.Id,
-                Title = title,
-                IsGroup = chat.Type != ChatType.Private
-            };
+                Chat chat = await _bot.Client.GetChatAsync(new ChatId(chatId));
+
+                string title = chat.Type == ChatType.Private ? $"{chat.FirstName} {chat.LastName}" : chat.Title;
+
+                return new ChatDto
+                {
+                    ChatId = chat.Id,
+                    Title = title,
+                    IsGroup = chat.Type != ChatType.Private
+                };
+            }
+            catch (ApiRequestException ex) when (ex.ErrorCode == 400 && ex.Message == "Bad Request: chat not found")
+            {
+                return null;
+            }
         }
     }
 }
